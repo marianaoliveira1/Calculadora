@@ -9,7 +9,7 @@ class Button extends StatelessWidget {
   final String text;
   final bool big;
   final Color color;
-  final void Function(String) cb;
+  final void Function(String)? cb;
 
   Button({
     @required this.text = '',
@@ -18,10 +18,18 @@ class Button extends StatelessWidget {
     @required this.cb,
   });
 
+  Button.big({
+    @required this.text = '',
+    this.big = true,
+    this.color = DEFAULT,
+    @required this.cb,
+  });
+
   Button.operation({
     @required this.text = '',
     this.big = false,
     this.color = OPERATION,
+    @required this.cb
   });
 
   @override
@@ -33,12 +41,12 @@ class Button extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: Colors.white70,
-            fontSize: 32,
+            color: Colors.white,
+            fontSize: 44,
             fontWeight: FontWeight.w200,
           ),
         ),
-        onPressed: () {},
+        onPressed: () => cb!(text),
       ),
     );
   }
